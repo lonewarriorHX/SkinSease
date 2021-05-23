@@ -7,9 +7,16 @@
     android:background="@drawable/back_main"
     tools:context=".HomeActivity">
 
+    <ImageView
+        app:layout_constraintTop_toBottomOf="@+id/judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/back_main"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/judul"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         app:cardBackgroundColor="@color/colorAccent"
@@ -18,10 +25,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01999998">
+        app:layout_constraintVertical_bias="0">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="horizontal">
