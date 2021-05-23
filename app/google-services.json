@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397038974428",
+    "project_id": "your-skin-healthcare",
+    "storage_bucket": "your-skin-healthcare.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397038974428:android:472e91b5c23bca56fecb19",
+        "android_client_info": {
+          "package_name": "com.example.yourskinhealthcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397038974428-fgig065m30daslitkq8ihofbtvgsljp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlXnrzRlahzoGQ1lBx1OnNZH9O5NXgdMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397038974428-fgig065m30daslitkq8ihofbtvgsljp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
