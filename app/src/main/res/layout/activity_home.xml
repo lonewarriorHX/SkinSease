@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_main"
     tools:context=".HomeActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
-        app:cardBackgroundColor="@color/purple_500"
+        android:background="@color/colorAccent"
+        app:cardBackgroundColor="@color/colorAccent"
         app:cardCornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
