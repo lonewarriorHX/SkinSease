@@ -5,23 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
+import com.example.yourskinhealthcare.main.CameraActivity
 import com.example.yourskinhealthcare.main.DetectActivity
 import com.example.yourskinhealthcare.main.NewActivity
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        val activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(activityHomeBinding.root)
 
-        val btn = findViewById<ImageView>(R.id.button1)
-        val coba = findViewById<Button>(R.id.cobaTes)
-        btn.setOnClickListener {
+        activityHomeBinding.button1.setOnClickListener {
             val intent = Intent(this, profile::class.java)
-            startActivity(intent);
+            startActivity(intent)
         }
-        coba.setOnClickListener {
+        activityHomeBinding.cobaTes.setOnClickListener {
             val intent = Intent(this, NewActivity::class.java)
-            startActivity(intent);
+            startActivity(intent)
+        }
+        activityHomeBinding.btnCamDetect.setOnClickListener {
+            val intent = Intent(this, CameraActivity::class.java )
+            startActivity(intent)
         }
     }
 }
