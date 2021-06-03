@@ -43,7 +43,6 @@ class DetectFragment : Fragment() {
             startActivity(intent)
         }
 
-
         return root
     }
 

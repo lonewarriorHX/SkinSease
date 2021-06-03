@@ -1,4 +1,4 @@
-package com.example.yourskinhealthcare.ui.home.ui.notifications
+package com.example.yourskinhealthcare.ui.home.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

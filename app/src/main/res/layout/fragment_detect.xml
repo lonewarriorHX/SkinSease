@@ -21,7 +21,7 @@
         android:id="@+id/btn_cam_detect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/detect_with_camera"
+        android:text="@string/Live_Detection"
         app:layout_constraintEnd_toEndOf="@+id/cobaTes"
         app:layout_constraintStart_toStartOf="@+id/cobaTes"
         app:layout_constraintTop_toBottomOf="@+id/cobaTes" />

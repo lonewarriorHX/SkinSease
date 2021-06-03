@@ -14,7 +14,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@id/editUser"
+        app:layout_constraintBottom_toTopOf="@id/login_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.900" />
 
     <EditText
-        android:id="@+id/editUser"
+        android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.60000002"
         tools:layout_editor_absoluteX="70dp"
         tools:ignore="TextFields"
-        android:inputType="text"/>
+        android:inputType="textEmailAddress"/>
 
 
 
@@ -54,11 +54,11 @@
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="10dp"
         android:hint="@string/password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:padding="10dp"
         android:autofillHints="@string/user_name"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUser"
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
         app:layout_constraintVertical_bias="0.15"
         tools:layout_editor_absoluteX="70dp"/>
 
@@ -127,14 +127,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/google"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/google"
-        app:layout_constraintBottom_toBottomOf="@id/google"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintEnd_toEndOf="@id/google"
-        android:text="Sign Up with Google"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

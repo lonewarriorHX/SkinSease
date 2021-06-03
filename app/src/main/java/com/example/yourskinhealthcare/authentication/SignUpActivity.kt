@@ -3,92 +3,115 @@ package com.example.yourskinhealthcare.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.util.Patterns
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.yourskinhealthcare.ui.home.HomeActivity
 import com.example.yourskinhealthcare.R
+import com.example.yourskinhealthcare.ui.home.MainActivity
+import com.example.yourskinhealthcare.ui.home.ui.profile.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.editPassword
-import kotlinx.android.synthetic.main.activity_login.editUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.util.HashMap
 
 class SignUpActivity : AppCompatActivity() {
 
+    companion object {
+        const val TAG = "TAG"
+    }
+
+    private lateinit var mFullName: EditText
+    private lateinit var mEmail: EditText
+    private lateinit var mPassword: EditText
+    private lateinit var mRegisterBtn: Button
+    private lateinit var mLoginBtn: TextView
+    private lateinit var fStore: FirebaseFirestore
+    private lateinit var userID: String
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        auth = FirebaseAuth.getInstance()
-        val myTxt = findViewById<TextView>(R.id.signUp)
-        val cancel = findViewById<TextView>(R.id.Cancel)
-        editPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-        editPassword.setSelection(editPassword.text.toString().length)
-        confirmPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-        confirmPassword.setSelection(editPassword.text.toString().length)
 
-        cancel.setOnClickListener{
-            startActivity(Intent(this, HomeActivity::class.java))
+        mFullName = findViewById(R.id.reg_fullName)
+        mEmail = findViewById(R.id.reg_email)
+        mPassword = findViewById(R.id.reg_password)
+        mRegisterBtn = findViewById(R.id.signUp)
+        mLoginBtn = findViewById(R.id.Cancel)
+
+        auth = FirebaseAuth.getInstance()
+        fStore = FirebaseFirestore.getInstance()
+
+        if (auth!!.currentUser != null) {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
 
-        myTxt.setOnClickListener{
-            signUpUser()
-        }
-    }
 
-    private fun signUpUser(){
-        if (editUser.text.toString().isEmpty()){
-            editUser.error = "Please enter email"
-            editUser.requestFocus()
-            return
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(editUser.text.toString()).matches()) {
-            editUser.error = "Please enter a valid email"
-            editUser.requestFocus()
-            return
-        }
-        if (editPassword.text.toString().isEmpty()){
-            editPassword.error = "Please enter password"
-            editPassword.requestFocus()
-            return
-        }
-        if (editPassword.text.toString() != confirmPassword.text.toString()){
-            editPassword.error = "Password not matched!"
-            confirmPassword.error="Password not matched!"
-            editPassword.requestFocus()
-            confirmPassword.requestFocus()
-            return
-        }
-
-        auth.createUserWithEmailAndPassword(editUser.text.toString(), editPassword.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Toast.makeText(baseContext, "Sign Up Success",
-                        Toast.LENGTH_SHORT).show()
-                    val user = auth.currentUser
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    finish()
-                }
-                /*if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    user!!.sendEmailVerification()
-                        .addOnCompleteListener { task1 ->
-                            if (task1.isSuccessful) {
-                                //Log.d(TAG, "createUserWithEmail:success")
-                                startActivity(Intent(this,MainActivity::class.java))
-                                finish()
-                            }
-                        }
-                }*/
-                else {
-                    Toast.makeText(baseContext, "Sign Up failed. Try again after some time",
-                        Toast.LENGTH_SHORT).show()
-                }
+        mRegisterBtn.setOnClickListener(View.OnClickListener {
+            val email = mEmail.getText().toString().trim { it <= ' ' }
+            val password = mPassword.getText().toString().trim { it <= ' ' }
+            val fullName = mFullName.getText().toString()
+            if (TextUtils.isEmpty(email)) {
+                mEmail.setError("Email is Required.")
+                return@OnClickListener
             }
+            if (TextUtils.isEmpty(password)) {
+                mPassword.setError("Password is Required.")
+                return@OnClickListener
+            }
+            if (password.length < 6) {
+                mPassword.setError("Password Must be >= 6 Characters")
+                return@OnClickListener
+            }
+
+
+        auth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                Toast.makeText(this@SignUpActivity, "User Created.", Toast.LENGTH_SHORT).show()
+                userID = auth!!.currentUser!!.uid
+                val documentReference = fStore!!.collection("users").document(
+                    userID!!
+                )
+                val user: MutableMap<String, Any> =
+                    HashMap()
+                user["fName"] = fullName
+                user["email"] = email
+                documentReference.set(user).addOnSuccessListener {
+                    Log.d(
+                        TAG,
+                        "onSuccess: user Profile is created for $userID"
+                    )
+                }.addOnFailureListener { e ->
+                    Log.d(
+                        TAG,
+                        "onFailure: $e"
+                    )
+                }
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+            } else {
+                Toast.makeText(
+                    this@SignUpActivity,
+                    "Error ! " + task.exception!!.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        }
+        })
+        mLoginBtn.setOnClickListener(View.OnClickListener {
+            startActivity(
+                Intent(
+                    applicationContext,
+                    LoginActivity::class.java
+                )
+            )
+        })
     }
 }

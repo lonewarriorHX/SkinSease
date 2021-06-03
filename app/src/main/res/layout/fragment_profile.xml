@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/back_main"
-    tools:context=".ui.home.ui.notifications.ProfileFragment">
+    tools:context=".ui.home.ui.profile.ProfileFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,6 +16,7 @@
             android:id="@+id/layoutHead"
             android:background="#5CC09F"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="200dp">
 
             <ImageView
@@ -47,6 +48,125 @@
                 android:layout_height="wrap_content"/>
 
         </RelativeLayout>
+=======
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            tools:context=".AccountFragment">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@drawable/gradientbackground"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30sp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profilePicture"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/character"
+                            app:civ_border_color="#ffffff"
+                            app:civ_border_width="3dp" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/profileFullName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="User FullName"
+                        android:textColor="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_email_black_24dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="10sp"
+                            android:text="Email"
+                            android:textColor="@color/headings"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/profileEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="example@email.com"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                </LinearLayout>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="0dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="News For You"
+                        android:textSize="16sp" />
+>>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -103,12 +223,28 @@
                 android:layout_marginBottom="20dp"
                 android:layout_height="wrap_content"/>
 
+<<<<<<< HEAD
+=======
+                <Button
+                    android:id="@+id/btn_reset_Password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttonstylewithgradient"
+                    android:text="Reset Password"
+                    android:textColor="#fff"
+                    tools:ignore="ButtonStyle" />
+
+            </LinearLayout>
+>>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
             <ProgressBar
                 android:id="@+id/progressbar"
                 android:visibility="invisible"
                 android:layout_margin="10dp"
                 android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -122,6 +258,21 @@
                 android:text="Save Changes"
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"/>
+=======
+                android:orientation="horizontal"
+                android:padding="30dp"
+                android:paddingLeft="0dp">
+
+                <Button
+                    android:id="@+id/btn_edit_Profile"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/buttonstylewithgradient"
+                    android:text="EDIT PROFILE"
+                    android:textColor="#fff"
+                    tools:ignore="ButtonStyle" />
+>>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
         </LinearLayout>
 
