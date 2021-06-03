@@ -51,12 +51,12 @@ class NewActivity : AppCompatActivity() {
         btnvas = findViewById(R.id.buttonvas)
         btnpig = findViewById(R.id.buttonpig)
 
-        btnsqu.visibility = View.GONE;
-        btnseb.visibility = View.GONE;
-        btnvas.visibility = View.GONE;
-        btnpig.visibility = View.GONE;
-        btnmel.visibility = View.GONE;
-        btnder.visibility = View.GONE;
+        btnsqu.visibility = View.GONE
+        btnseb.visibility = View.GONE
+        btnvas.visibility = View.GONE
+        btnpig.visibility = View.GONE
+        btnmel.visibility = View.GONE
+        btnder.visibility = View.GONE
 
         val labels =
             application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
@@ -107,32 +107,32 @@ class NewActivity : AppCompatActivity() {
             var new = foodCategory
             var score = probability.component1()
             //var percentage = new/500*100
-            textView2.setText(new)
+            textView2.text = new
             text_view.text = number3digits.toString() + "%"
             var shared = textView2.text.toString()
 
 
             if (shared == "Dermatofibroma") {
-                btnsqu.setVisibility(View.GONE);
-                btnseb.setVisibility(View.GONE);
-                btnvas.setVisibility(View.GONE);
-                btnpig.setVisibility(View.GONE);
-                btnmel.setVisibility(View.GONE);
-                btnder.setVisibility(View.VISIBLE);
+                btnsqu.visibility = View.GONE
+                btnseb.visibility = View.GONE
+                btnvas.visibility = View.GONE
+                btnpig.visibility = View.GONE
+                btnmel.visibility = View.GONE
+                btnder.visibility = View.VISIBLE
             } else if (shared == "Melanoma") {
-                btnsqu.setVisibility(View.GONE);
-                btnseb.setVisibility(View.GONE);
-                btnvas.setVisibility(View.GONE);
-                btnpig.setVisibility(View.GONE);
-                btnmel.setVisibility(View.VISIBLE);
-                btnder.setVisibility(View.GONE);
+                btnsqu.visibility = View.GONE
+                btnseb.visibility = View.GONE
+                btnvas.visibility = View.GONE
+                btnpig.visibility = View.GONE
+                btnmel.visibility = View.VISIBLE
+                btnder.visibility = View.GONE
             } else {
-                btnsqu.setVisibility(View.GONE);
-                btnseb.setVisibility(View.GONE);
-                btnvas.setVisibility(View.GONE);
-                btnpig.setVisibility(View.GONE);
-                btnmel.setVisibility(View.GONE);
-                btnder.setVisibility(View.GONE);
+                btnsqu.visibility = View.GONE
+                btnseb.visibility = View.GONE
+                btnvas.visibility = View.GONE
+                btnpig.visibility = View.GONE
+                btnmel.visibility = View.GONE
+                btnder.visibility = View.GONE
             }
             //textView2.setText((outputFeature0.floatArray[max].toString())+"%")
 
@@ -154,13 +154,13 @@ class NewActivity : AppCompatActivity() {
     }
 
     fun getMax(arr: FloatArray): Int {
-        var ind = 0;
-        var min = 0.0f;
+        var ind = 0
+        var min = 0.0f
 
         for (i in 0..5) {
             if (arr[i] > min) {
                 min = arr[i]
-                ind = i;
+                ind = i
             }
         }
         return ind

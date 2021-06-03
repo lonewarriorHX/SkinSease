@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/back_main"
-    tools:context=".ui.home.ui.notifications.ProfileFragment">
+    tools:context=".ui.home.ui.profile.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
