@@ -20,8 +20,6 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yourskinhealthcare.R
-import com.example.yourskinhealthcare.databinding.ActivityCameraBinding
-import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
 import com.example.yourskinhealthcare.ml.ModelSkin
 import com.example.yourskinhealthcare.ui.recognition.RecognitionAdapter
 import com.example.yourskinhealthcare.util.YuvToRgbConverter

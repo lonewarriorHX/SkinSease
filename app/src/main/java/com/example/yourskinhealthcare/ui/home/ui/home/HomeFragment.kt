@@ -1,9 +1,5 @@
 package com.example.yourskinhealthcare.ui.home.ui.home
 
-
-import android.R
-=======
->>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +16,6 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.yourskinhealthcare.R
 import com.example.yourskinhealthcare.authentication.LoginActivity
 import com.example.yourskinhealthcare.databinding.FragmentHomeBinding
 
@@ -33,7 +28,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
 
 import com.google.firebase.auth.FirebaseAuth
-
 
 
 /*class HomeFragment : AppCompatActivity() {
@@ -94,68 +88,69 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-            homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-            _binding = FragmentHomeBinding.inflate(inflater, container, false)
-            val root: View = binding.root
-        rImage1 = binding.rImage1
-        val btn = binding.text1
-        val btn2 = binding.text2
-        val btn3 = binding.text3
-        val btn4 = binding.text4
-        val btn5 = binding.text5
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-        val firebaseDatabase = FirebaseDatabase.getInstance()
-        val databaseReference = firebaseDatabase.reference
-        val getImage = databaseReference.child("image1")
-        getImage.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
 
-                val link = dataSnapshot.getValue(String::class.java)!!
-                Picasso.get().load(link).into(rImage1)
-            }
 
-            override fun onCancelled(@NonNull databaseError: DatabaseError) {
-                Toast.makeText(requireActivity(), "Error Loading Image", Toast.LENGTH_SHORT).show()
-            }
-        })
-        btn.setOnClickListener{
-            requireActivity().run{
-                startActivity(Intent(this, DetailActivity1::class.java))
-                finish()
-            }
-        }
-        btn5.setOnClickListener{
-            requireActivity().run{
-                startActivity(Intent(this, DetailActivity1::class.java))
-                finish()
-            }
-        }
-        btn2.setOnClickListener{
-            requireActivity().run{
-                startActivity(Intent(this, DetailActivity1::class.java))
-                finish()
-            }
-        }
-        btn3.setOnClickListener{
-            requireActivity().run{
-                startActivity(Intent(this, DetailActivity1::class.java))
-                finish()
-            }
-        }
-        btn4.setOnClickListener{
-            requireActivity().run{
-                startActivity(Intent(this, DetailActivity1::class.java))
-                finish()
-            }
-        }
-            return root
+        return root
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity != null) {
+            rImage1 = binding.rImage1
+            val btn = binding.text1
+            val btn2 = binding.text2
+            val btn3 = binding.text3
+            val btn4 = binding.text4
+            val btn5 = binding.text5
+
+            val firebaseDatabase = FirebaseDatabase.getInstance()
+            val databaseReference = firebaseDatabase.reference
+            val getImage = databaseReference.child("image1")
+            getImage.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
+
+                    val link = dataSnapshot.getValue(String::class.java)!!
+                    Picasso.get().load(link).into(rImage1)
+                }
+
+                override fun onCancelled(@NonNull databaseError: DatabaseError) {
+                    Toast.makeText(requireActivity(), "Error Loading Image", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+            btn.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, DetailActivity1::class.java))
+                }
+            }
+            btn5.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, DetailActivity1::class.java))
+                }
+            }
+            btn2.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, DetailActivity1::class.java))
+                }
+            }
+            btn3.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, DetailActivity1::class.java))
+                }
+            }
+            btn4.setOnClickListener {
+                requireActivity().run {
+                    startActivity(Intent(this, DetailActivity1::class.java))
+                }
+            }
+        }
     }
+
 }

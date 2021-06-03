@@ -5,50 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/back_main"
     tools:context=".ui.home.ui.profile.ProfileFragment">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/layoutHead"
-            android:background="#5CC09F"
+        <LinearLayout
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="200dp">
-
-            <ImageView
-                android:id="@+id/image_view"
-                android:background="@drawable/ic_baseline_person_24"
-                android:layout_centerInParent="true"
-                android:layout_width="90dp"
-                android:layout_height="90dp"/>
-
-            <EditText
-                android:hint="Enter Name"
-                android:textAlignment="center"
-                android:layout_marginTop="5dp"
-                android:textColor="@android:color/white"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/image_view"
-                tools:text="Belal Khan"
-                android:enabled="true"
-                android:id="@+id/edit_text_name"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"/>
-
-            <ProgressBar
-                android:visibility="invisible"
-                android:id="@+id/progressbar_pic"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </RelativeLayout>
-=======
             android:layout_height="wrap_content"
             android:background="#ffffff"
             android:orientation="vertical"
@@ -146,7 +112,6 @@
                 </LinearLayout>
 
 
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -166,99 +131,34 @@
                         android:layout_marginTop="5dp"
                         android:text="News For You"
                         android:textSize="16sp" />
->>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:padding="16dp"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            android:layout_below="@id/layoutHead"
-            android:layout_width="360dp"
-            android:layout_height="match_parent">
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:paddingLeft="178dp"
+                        android:textOff="OFF"
+                        android:textOn="ON" />
+                </LinearLayout>
 
-            <TextView
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_gravity="top"
-                android:drawablePadding="16dp"
-                android:drawableLeft="@drawable/ic_email_black_24dp"
-                tools:text="probelalkhan@gmail.com"
-                android:id="@+id/text_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/text_not_verified"
-                android:visibility="invisible"
-                android:textColor="@android:color/holo_red_dark"
-                android:layout_gravity="right"
-                android:layout_marginBottom="9dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:text="Not Verified (Click to Verify)"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-
-            <TextView
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_gravity="top"
-                android:drawablePadding="16dp"
-                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                tools:text="+917549161079"
-                android:enabled="true"
-                android:id="@+id/text_phone"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_gravity="top"
-                android:drawablePadding="16dp"
-                android:drawableLeft="@drawable/ic_phone_android_black_24dp"
-                android:text="Change Password"
-                android:enabled="true"
-                android:id="@+id/text_password"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_height="wrap_content"/>
-
-<<<<<<< HEAD
-=======
                 <Button
                     android:id="@+id/btn_reset_Password"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/buttonstylewithgradient"
                     android:text="Reset Password"
                     android:textColor="#fff"
                     tools:ignore="ButtonStyle" />
 
             </LinearLayout>
->>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
-            <ProgressBar
-                android:id="@+id/progressbar"
-                android:visibility="invisible"
-                android:layout_margin="10dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-<<<<<<< HEAD
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <Button
-                android:id="@+id/button_save"
-                android:layout_marginTop="15dp"
-                android:textColor="@android:color/white"
-                android:background="?colorPrimary"
-                android:textAllCaps="false"
-                android:layout_gravity="center_horizontal"
-                android:text="Save Changes"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"/>
-=======
                 android:orientation="horizontal"
                 android:padding="30dp"
                 android:paddingLeft="0dp">
@@ -272,10 +172,33 @@
                     android:text="EDIT PROFILE"
                     android:textColor="#fff"
                     tools:ignore="ButtonStyle" />
->>>>>>> fb3e5ac1d8f7a3c62d2fabd3ebd25d89548ed8b6
 
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/button2"
+                    android:text="LOG OUT"
+                    android:textColor="@color/headings"
+                    android:textStyle="bold"
+                    tools:ignore="ButtonStyle" />
+            </LinearLayout>
         </LinearLayout>
 
-    </RelativeLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
