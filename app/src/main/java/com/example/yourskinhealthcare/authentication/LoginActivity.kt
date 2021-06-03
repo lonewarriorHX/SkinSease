@@ -4,9 +4,11 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.yourskinhealthcare.ui.home.HomeActivity
@@ -18,124 +20,92 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-    private var mIsShowPass = false
+    lateinit var mEmail: EditText
+    lateinit var mPassword: EditText
+    lateinit var mLoginBtn: Button
+    lateinit var mSignUpBtn: TextView
+    lateinit var forgotTextLink: TextView
+    lateinit var fAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        auth = FirebaseAuth.getInstance()
 
-        val myTxt = findViewById<TextView>(R.id.signUp)
-        val myBtn = findViewById<Button>(R.id.signIn)
-        val myPass = findViewById<TextView>(R.id.forgotPassword)
+        mEmail = findViewById(R.id.login_email)
+        mPassword = findViewById(R.id.editPassword)
+        fAuth = FirebaseAuth.getInstance()
+        mLoginBtn = findViewById(R.id.signIn)
+        mSignUpBtn = findViewById(R.id.signUp)
+        forgotTextLink = findViewById(R.id.forgotPassword)
 
-        showPass.setOnClickListener{
-            mIsShowPass = !mIsShowPass
-            showPassword(mIsShowPass)
-        }
-
-        myTxt.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+        if (fAuth!!.currentUser != null) {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
 
-        myBtn.setOnClickListener{
-            doLogin()
-        }
-
-        myPass.setOnClickListener{
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Forgot Password")
-            val view= layoutInflater.inflate(R.layout.dialog_forgot_password, null)
-            val username = view.findViewById<EditText>(R.id.et_username)
-            builder.setView(view)
-            builder.setPositiveButton("reset", DialogInterface.OnClickListener{ _, _->
-                forgotPass(username)
-            })
-            builder.setNegativeButton("close", DialogInterface.OnClickListener{ _, _-> })
-            builder.show()
-        }
-        showPassword(mIsShowPass)
-    }
-
-    private fun showPassword(isShow: Boolean) {
-        if(isShow) {
-            editPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            showPass.setImageResource(R.drawable.ic_visibleoff)
-        } else {
-            editPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-            showPass.setImageResource(R.drawable.ic_visible)
-        }
-        editPassword.setSelection(editPassword.text.toString().length)
-    }
-
-    private fun forgotPass(username : EditText){
-        if (username.text.toString().isEmpty()){
-            return
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()) {
-            return
-        }
-
-        auth.sendPasswordResetEmail(username.text.toString())
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this,"Email sent", Toast.LENGTH_SHORT).show()
-                }
+        mLoginBtn.setOnClickListener(View.OnClickListener {
+            val email = mEmail.getText().toString().trim { it <= ' ' }
+            val password = mPassword.getText().toString().trim { it <= ' ' }
+            if (TextUtils.isEmpty(email)) {
+                mEmail.setError("Email is Required.")
+                return@OnClickListener
             }
-    }
+            if (TextUtils.isEmpty(password)) {
+                mPassword.setError("Password is Required.")
+                return@OnClickListener
+            }
+            if (password.length < 6) {
+                mPassword.setError("Password Must be >= 6 Characters")
+                return@OnClickListener
+            }
 
-    private fun doLogin(){
-        if (editUser.text.toString().isEmpty()){
-            editUser.error = "Please enter email"
-            editUser.requestFocus()
-            return
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(editUser.text.toString()).matches()) {
-            editUser.error = "Please enter email"
-            editUser.requestFocus()
-            return
-        }
-        if (editPassword.text.toString().isEmpty()) {
-            editPassword.error = "Please enter password"
-            editPassword.requestFocus()
-            return
-        }
-        auth.signInWithEmailAndPassword(editUser.text.toString(), editPassword.text.toString())
-            .addOnCompleteListener(this) { task ->
+            fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    updateUI(user)
+                    Toast.makeText(this@LoginActivity, "Logged in Successfully", Toast.LENGTH_SHORT)
+                        .show()
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                 } else {
-                    Toast.makeText(baseContext, "Login failed.",
-                        Toast.LENGTH_SHORT).show()
-                    updateUI(null)
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Error ! " + task.exception!!.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-    }
-
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(currentUser : FirebaseUser?){
-        if(currentUser != null) {
-            //if(currentUser.isEmailVerified) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-            // }else{
-            //     Toast.makeText(
-            //          baseContext, "Please verify your email",
-            //          Toast.LENGTH_SHORT
-            //      ) .show()
-            //  }
-        }
-
-
+        })
+        mSignUpBtn.setOnClickListener(View.OnClickListener {
+            val i = Intent(this, SignUpActivity::class.java)
+            startActivity(i)
+        })
+        forgotTextLink.setOnClickListener(View.OnClickListener { v ->
+            val resetMail = EditText(v.context)
+            val passwordResetDialog = AlertDialog.Builder(v.context)
+            passwordResetDialog.setTitle("Reset Password ?")
+            passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.")
+            passwordResetDialog.setView(resetMail)
+            passwordResetDialog.setPositiveButton(
+                "Yes"
+            ) { dialog, which -> // extract the email and send reset link
+                val mail = resetMail.text.toString()
+                fAuth!!.sendPasswordResetEmail(mail).addOnSuccessListener {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Reset Link Sent To Your Email.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }.addOnFailureListener { e ->
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Error ! Reset Link is Not Sent" + e.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            passwordResetDialog.setNegativeButton(
+                "No"
+            ) { dialog, which ->
+            }
+            passwordResetDialog.create().show()
+        })
     }
 }

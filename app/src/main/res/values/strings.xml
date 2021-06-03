@@ -30,4 +30,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_ScanMySkin">Scan My Skin</string>
     <string name="start_detection">Start Detection</string>
+    <string name="Live_Detection">Live Detection</string>
+    <string name="fullname">Full Name</string>
+    <string name="email">Email</string>
 </resources>

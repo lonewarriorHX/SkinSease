@@ -8,17 +8,17 @@
     tools:context=".authentication.SignUpActivity">
 
     <EditText
-        android:id="@+id/editUser"
+        android:id="@+id/reg_fullName"
         android:layout_width="match_parent"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="55dp"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/user_name"
+        android:autofillHints="@string/fullname"
         android:background="@drawable/login_edit_background"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="10dp"
-        android:hint="@string/user_name"
+        android:hint="@string/fullname"
         android:inputType="text"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,6 +26,9 @@
         app:layout_constraintVertical_bias="0.50"
         tools:ignore="TextFields"
         tools:layout_editor_absoluteX="70dp" />
+
+
+
 
     <TextView
         android:id="@+id/textBergabung"
@@ -35,7 +38,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/editUser"
+        app:layout_constraintBottom_toTopOf="@id/reg_fullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.750"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +53,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@id/editUser"
+        app:layout_constraintBottom_toTopOf="@id/reg_fullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.80"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +69,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/editUser"
+        app:layout_constraintBottom_toTopOf="@id/reg_fullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +84,7 @@
         android:textStyle="bold"
         android:textColor="#000000"
         android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@id/editUser"
+        app:layout_constraintBottom_toTopOf="@id/reg_fullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +92,26 @@
         app:layout_constraintVertical_bias="0.950" />
 
     <EditText
-        android:id="@+id/editPassword"
+        android:id="@+id/reg_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:autofillHints="@string/user_name"
+        android:background="@drawable/login_edit_background"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="10dp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reg_fullName"
+        app:layout_constraintVertical_bias="0.07"
+        tools:layout_editor_absoluteX="70dp" />
+
+    <EditText
+        android:id="@+id/reg_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="55dp"
@@ -100,10 +122,10 @@
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="10dp"
         android:hint="@string/password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editUser"
+        app:layout_constraintTop_toBottomOf="@id/reg_email"
         app:layout_constraintVertical_bias="0.07"
         tools:layout_editor_absoluteX="70dp" />
 
@@ -149,10 +171,10 @@
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="10dp"
         android:hint="Confirm Password"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editPassword"
+        app:layout_constraintTop_toBottomOf="@id/reg_password"
         app:layout_constraintVertical_bias="0.07"
         tools:layout_editor_absoluteX="70dp" />
 
@@ -166,15 +188,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/google"
         android:src="@drawable/gradientbackground"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/google"
-        app:layout_constraintBottom_toBottomOf="@id/google"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintEnd_toEndOf="@id/google"
-        android:text="Sign Up with Google"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

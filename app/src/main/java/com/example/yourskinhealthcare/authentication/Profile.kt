@@ -1,11 +1,10 @@
-package com.example.yourskinhealthcare
+package com.example.yourskinhealthcare.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import com.example.yourskinhealthcare.authentication.LoginActivity
+import com.example.yourskinhealthcare.R
 import com.google.firebase.auth.FirebaseAuth
 
 class profile : AppCompatActivity() {

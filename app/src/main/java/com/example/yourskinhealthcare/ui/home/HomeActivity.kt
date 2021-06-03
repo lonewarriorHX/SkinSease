@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
 import com.example.yourskinhealthcare.main.CameraActivity
 import com.example.yourskinhealthcare.main.NewActivity
-import com.example.yourskinhealthcare.profile
+import com.example.yourskinhealthcare.authentication.profile
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
