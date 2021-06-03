@@ -1,4 +1,4 @@
-package com.example.yourskinhealthcare.ui
+package com.example.yourskinhealthcare.ui.recognition
 
 import android.content.Context
 import android.view.LayoutInflater

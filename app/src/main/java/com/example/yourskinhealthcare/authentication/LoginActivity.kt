@@ -9,8 +9,9 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import com.example.yourskinhealthcare.HomeActivity
+import com.example.yourskinhealthcare.ui.home.HomeActivity
 import com.example.yourskinhealthcare.R
+import com.example.yourskinhealthcare.ui.home.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -125,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUI(currentUser : FirebaseUser?){
         if(currentUser != null) {
             //if(currentUser.isEmailVerified) {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
             // }else{
             //     Toast.makeText(

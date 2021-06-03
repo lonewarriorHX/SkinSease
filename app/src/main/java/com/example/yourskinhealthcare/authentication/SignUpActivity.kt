@@ -7,7 +7,7 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import android.widget.TextView
 import android.widget.Toast
-import com.example.yourskinhealthcare.HomeActivity
+import com.example.yourskinhealthcare.ui.home.HomeActivity
 import com.example.yourskinhealthcare.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.editPassword

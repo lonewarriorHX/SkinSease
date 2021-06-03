@@ -14,7 +14,6 @@ class RecognitionViewModel : ViewModel() {
     fun updateData(recognitions: List<Recognition>){
         _recognitionList.postValue(recognitions)
     }
-
 }
 
 /**
@@ -28,6 +27,6 @@ data class Recognition(val label:String, val confidence:Float) {
     }
 
     // Output probability as a string to enable easy data binding
-    val probabilityString = String.format("%.1f%%", confidence * 100.0f)
+    val probabilityString = String.format("%.2f%%", confidence * 100.0f)
 
 }

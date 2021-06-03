@@ -23,7 +23,7 @@ import com.example.yourskinhealthcare.R
 import com.example.yourskinhealthcare.databinding.ActivityCameraBinding
 import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
 import com.example.yourskinhealthcare.ml.ModelSkin
-import com.example.yourskinhealthcare.ui.RecognitionAdapter
+import com.example.yourskinhealthcare.ui.recognition.RecognitionAdapter
 import com.example.yourskinhealthcare.util.YuvToRgbConverter
 import com.example.yourskinhealthcare.viewmodel.Recognition
 import com.example.yourskinhealthcare.viewmodel.RecognitionViewModel
@@ -39,7 +39,7 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // permis
 // Listener for the result of the ImageAnalyzer
 typealias RecognitionListener = (recognition: List<Recognition>) -> Unit
 
-class CameraActivity : AppCompatActivity() {
+class CameraActivity: AppCompatActivity() {
 
     // CameraX variables
     private lateinit var preview: Preview // Preview use case, fast, responsive view of the camera
@@ -264,7 +264,5 @@ class CameraActivity : AppCompatActivity() {
                 false
             )
         }
-
     }
-
 }

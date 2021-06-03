@@ -1,15 +1,12 @@
-package com.example.yourskinhealthcare
+package com.example.yourskinhealthcare.ui.home
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
 import com.example.yourskinhealthcare.main.CameraActivity
-import com.example.yourskinhealthcare.main.DetectActivity
 import com.example.yourskinhealthcare.main.NewActivity
-import kotlinx.android.synthetic.main.activity_home.*
+import com.example.yourskinhealthcare.profile
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

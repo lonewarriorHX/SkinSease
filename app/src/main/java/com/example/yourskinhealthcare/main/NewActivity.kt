@@ -21,18 +21,18 @@ import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class NewActivity : AppCompatActivity() {
 
-    lateinit var select_image_button : Button
-    lateinit var make_prediction : Button
-    lateinit var img_view : ImageView
-    lateinit var text_view : TextView
+    lateinit var select_image_button: Button
+    lateinit var make_prediction: Button
+    lateinit var img_view: ImageView
+    lateinit var text_view: TextView
     lateinit var bitmap: Bitmap
-    lateinit var text_view2 : TextView
-    lateinit var btnmel : Button
-    lateinit var btnsqu : Button
-    lateinit var btnder : Button
-    lateinit var btnpig : Button
-    lateinit var btnvas : Button
-    lateinit var btnseb : Button
+    lateinit var text_view2: TextView
+    lateinit var btnmel: Button
+    lateinit var btnsqu: Button
+    lateinit var btnder: Button
+    lateinit var btnpig: Button
+    lateinit var btnvas: Button
+    lateinit var btnseb: Button
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,35 +58,37 @@ class NewActivity : AppCompatActivity() {
         btnmel.visibility = View.GONE;
         btnder.visibility = View.GONE;
 
-        val labels = application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
+        val labels =
+            application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
 
         select_image_button.setOnClickListener(View.OnClickListener {
             Log.d("mssg", "button pressed")
-            var intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
+            var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
 
             startActivityForResult(intent, 100)
         })
 
         make_prediction.setOnClickListener(View.OnClickListener {
-                var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-                val model = ModelSkin.newInstance(this)
+            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+            val model = ModelSkin.newInstance(this)
 
-                var tbuffer = TensorImage.fromBitmap(resized)
-                var byteBuffer = tbuffer.buffer
-                val image = TensorImage.fromBitmap(bitmap)
+            var tbuffer = TensorImage.fromBitmap(resized)
+            var byteBuffer = tbuffer.buffer
+            val image = TensorImage.fromBitmap(bitmap)
 
-    // Creates inputs for reference.
+            // Creates inputs for reference.
 
-                val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
-                inputFeature0.loadBuffer(byteBuffer)
+            val inputFeature0 =
+                TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
+            inputFeature0.loadBuffer(byteBuffer)
 
-    // Runs model inference and gets result.
-                val outputs = model.process(image)
+            // Runs model inference and gets result.
+            val outputs = model.process(image)
 
-                val probability = outputs.probabilityAsCategoryList
-                val max = probability.apply { sortByDescending { it.score }}.take(Int.MAX_VALUE)
-                val foodCategory =  when (max[0].label.toString()) {
+            val probability = outputs.probabilityAsCategoryList
+            val max = probability.apply { sortByDescending { it.score } }.take(Int.MAX_VALUE)
+            val foodCategory = when (max[0].label.toString()) {
                 "dermatofibroma" -> "Dermatofibroma"
                 "pigmented_benign_keratosis" -> "Pigmented Benign Keratosis"
                 "seborrheic_keratosis" -> "Seborrheic Keratosis"
@@ -96,47 +98,47 @@ class NewActivity : AppCompatActivity() {
                 else -> { // Note the block
                     "Undefined"
                 }
-                }
-                val foodScore =  max[0].score * 100
-                val number3digits:Double = String.format("%.2f", foodScore).toDouble()
+            }
+            val foodScore = max[0].score * 100
+            val number3digits: Double = String.format("%.2f", foodScore).toDouble()
 
-                //var max = getMax(probability)
-                //var new = probability.floatArray[max]
-                var new = foodCategory
-                var score = probability.component1()
-                //var percentage = new/500*100
-                textView2.setText(new)
-                text_view.text = number3digits.toString() + "%"
-                var shared = textView2.text.toString()
-
-
-                if (shared == "Dermatofibroma") {
-                    btnsqu.setVisibility(View.GONE);
-                    btnseb.setVisibility(View.GONE);
-                    btnvas.setVisibility(View.GONE);
-                    btnpig.setVisibility(View.GONE);
-                    btnmel.setVisibility(View.GONE);
-                    btnder.setVisibility(View.VISIBLE);
-                } else if (shared == "Melanoma"){
-                    btnsqu.setVisibility(View.GONE);
-                    btnseb.setVisibility(View.GONE);
-                    btnvas.setVisibility(View.GONE);
-                    btnpig.setVisibility(View.GONE);
-                    btnmel.setVisibility(View.VISIBLE);
-                    btnder.setVisibility(View.GONE);
-                } else {
-                    btnsqu.setVisibility(View.GONE);
-                    btnseb.setVisibility(View.GONE);
-                    btnvas.setVisibility(View.GONE);
-                    btnpig.setVisibility(View.GONE);
-                    btnmel.setVisibility(View.GONE);
-                    btnder.setVisibility(View.GONE);
-                }
-                //textView2.setText((outputFeature0.floatArray[max].toString())+"%")
+            //var max = getMax(probability)
+            //var new = probability.floatArray[max]
+            var new = foodCategory
+            var score = probability.component1()
+            //var percentage = new/500*100
+            textView2.setText(new)
+            text_view.text = number3digits.toString() + "%"
+            var shared = textView2.text.toString()
 
 
-    // Releases model resources if no longer used.
-                model.close()
+            if (shared == "Dermatofibroma") {
+                btnsqu.setVisibility(View.GONE);
+                btnseb.setVisibility(View.GONE);
+                btnvas.setVisibility(View.GONE);
+                btnpig.setVisibility(View.GONE);
+                btnmel.setVisibility(View.GONE);
+                btnder.setVisibility(View.VISIBLE);
+            } else if (shared == "Melanoma") {
+                btnsqu.setVisibility(View.GONE);
+                btnseb.setVisibility(View.GONE);
+                btnvas.setVisibility(View.GONE);
+                btnpig.setVisibility(View.GONE);
+                btnmel.setVisibility(View.VISIBLE);
+                btnder.setVisibility(View.GONE);
+            } else {
+                btnsqu.setVisibility(View.GONE);
+                btnseb.setVisibility(View.GONE);
+                btnvas.setVisibility(View.GONE);
+                btnpig.setVisibility(View.GONE);
+                btnmel.setVisibility(View.GONE);
+                btnder.setVisibility(View.GONE);
+            }
+            //textView2.setText((outputFeature0.floatArray[max].toString())+"%")
+
+
+            // Releases model resources if no longer used.
+            model.close()
         })
 
 
@@ -147,18 +149,16 @@ class NewActivity : AppCompatActivity() {
 
         img_view.setImageURI(data?.data)
 
-        var uri : Uri?= data?.data
+        var uri: Uri? = data?.data
         bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
     }
 
-    fun getMax(arr:FloatArray) : Int{
+    fun getMax(arr: FloatArray): Int {
         var ind = 0;
         var min = 0.0f;
 
-        for(i in 0..5)
-        {
-            if(arr[i] > min)
-            {
+        for (i in 0..5) {
+            if (arr[i] > min) {
                 min = arr[i]
                 ind = i;
             }
