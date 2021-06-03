@@ -13,8 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yourskinhealthcare.R
-import com.example.yourskinhealthcare.ml.MobilenetV110224Quant
-import com.example.yourskinhealthcare.ml.SkinDisease
+import com.example.yourskinhealthcare.ml.*
 import kotlinx.android.synthetic.main.activity_detect.*
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
@@ -28,6 +27,12 @@ class NewActivity : AppCompatActivity() {
     lateinit var text_view : TextView
     lateinit var bitmap: Bitmap
     lateinit var text_view2 : TextView
+    lateinit var btnmel : Button
+    lateinit var btnsqu : Button
+    lateinit var btnder : Button
+    lateinit var btnpig : Button
+    lateinit var btnvas : Button
+    lateinit var btnseb : Button
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,19 @@ class NewActivity : AppCompatActivity() {
         img_view = findViewById(R.id.imageView2)
         text_view = findViewById(R.id.textView)
         text_view2 = findViewById(R.id.textView2)
+        btnmel = findViewById(R.id.buttonmel)
+        btnseb = findViewById(R.id.buttonseb)
+        btnsqu = findViewById(R.id.buttonsqu)
+        btnder = findViewById(R.id.buttonder)
+        btnvas = findViewById(R.id.buttonvas)
+        btnpig = findViewById(R.id.buttonpig)
+
+        btnsqu.visibility = View.GONE;
+        btnseb.visibility = View.GONE;
+        btnvas.visibility = View.GONE;
+        btnpig.visibility = View.GONE;
+        btnmel.visibility = View.GONE;
+        btnder.visibility = View.GONE;
 
         val labels = application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
 
@@ -51,29 +69,74 @@ class NewActivity : AppCompatActivity() {
         })
 
         make_prediction.setOnClickListener(View.OnClickListener {
-            var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = MobilenetV110224Quant.newInstance(this)
+                var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+                val model = Modelfinalez.newInstance(this)
 
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
+                var tbuffer = TensorImage.fromBitmap(resized)
+                var byteBuffer = tbuffer.buffer
+                val image = TensorImage.fromBitmap(bitmap)
 
-// Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
-            inputFeature0.loadBuffer(byteBuffer)
+    // Creates inputs for reference.
 
-// Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+                val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
+                inputFeature0.loadBuffer(byteBuffer)
 
-            var max = getMax(outputFeature0.floatArray)
-            var new = outputFeature0.floatArray[max]
-            var percentage = new/500*100
-            textView2.setText((percentage.toString())+"%")
-            //textView2.setText((outputFeature0.floatArray[max].toString())+"%")
-            text_view.setText(labels[max])
+    // Runs model inference and gets result.
+                val outputs = model.process(image)
 
-// Releases model resources if no longer used.
-            model.close()
+                val probability = outputs.probabilityAsCategoryList
+                val max = probability.apply { sortByDescending { it.score }}.take(Int.MAX_VALUE)
+                val foodCategory =  when (max[0].label.toString()) {
+                "dermatofibroma" -> "Dermatofibroma"
+                "pigmented_benign_keratosis" -> "Pigmented Benign Keratosis"
+                "seborrheic_keratosis" -> "Seborrheic Keratosis"
+                "squamous_cell_carcinoma" -> "Squamous Cell Carcinoma"
+                "vascular_lesion" -> "Vascular Lesion"
+                "melanoma" -> "Melanoma"
+                else -> { // Note the block
+                    "Undefined"
+                }
+                }
+                val foodScore =  max[0].score * 100
+                val number3digits:Double = String.format("%.2f", foodScore).toDouble()
+
+                //var max = getMax(probability)
+                //var new = probability.floatArray[max]
+                var new = foodCategory
+                var score = probability.component1()
+                //var percentage = new/500*100
+                textView2.setText(new)
+                text_view.text = number3digits.toString() + "%"
+                var shared = textView2.text.toString()
+
+
+                if (shared == "Dermatofibroma") {
+                    btnsqu.setVisibility(View.GONE);
+                    btnseb.setVisibility(View.GONE);
+                    btnvas.setVisibility(View.GONE);
+                    btnpig.setVisibility(View.GONE);
+                    btnmel.setVisibility(View.GONE);
+                    btnder.setVisibility(View.VISIBLE);
+                } else if (shared == "Melanoma"){
+                    btnsqu.setVisibility(View.GONE);
+                    btnseb.setVisibility(View.GONE);
+                    btnvas.setVisibility(View.GONE);
+                    btnpig.setVisibility(View.GONE);
+                    btnmel.setVisibility(View.VISIBLE);
+                    btnder.setVisibility(View.GONE);
+                } else {
+                    btnsqu.setVisibility(View.GONE);
+                    btnseb.setVisibility(View.GONE);
+                    btnvas.setVisibility(View.GONE);
+                    btnpig.setVisibility(View.GONE);
+                    btnmel.setVisibility(View.GONE);
+                    btnder.setVisibility(View.GONE);
+                }
+                //textView2.setText((outputFeature0.floatArray[max].toString())+"%")
+
+
+    // Releases model resources if no longer used.
+                model.close()
         })
 
 
@@ -92,7 +155,7 @@ class NewActivity : AppCompatActivity() {
         var ind = 0;
         var min = 0.0f;
 
-        for(i in 0..1000)
+        for(i in 0..5)
         {
             if(arr[i] > min)
             {
