@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yourskinhealthcare.R
+import com.example.yourskinhealthcare.detail.DetailActivity1
 import com.example.yourskinhealthcare.ml.*
 import kotlinx.android.synthetic.main.activity_detect.*
 import org.tensorflow.lite.DataType
@@ -57,6 +58,7 @@ class NewActivity : AppCompatActivity() {
         btnpig.visibility = View.GONE;
         btnmel.visibility = View.GONE;
         btnder.visibility = View.GONE;
+
 
         val labels =
             application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
@@ -139,6 +141,15 @@ class NewActivity : AppCompatActivity() {
 
             // Releases model resources if no longer used.
             model.close()
+
+            btnmel.setOnClickListener {
+                startActivity(Intent(this,DetailActivity1::class.java))
+                finish()
+            }
+            btnder.setOnClickListener {
+                startActivity(Intent(this,DetailActivity1::class.java))
+                finish()
+            }
         })
 
 

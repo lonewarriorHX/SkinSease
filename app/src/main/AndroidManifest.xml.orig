@@ -13,18 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourSkinHealthcare">
-        <activity android:name=".detail.DetailActivity1"></activity>
-        <activity
-            android:name=".ui.home.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+<<<<<<< HEAD
         <activity android:name=".main.SecondActivity"></activity>
         <activity
             android:name=".main.NewActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
+=======
         <activity android:name=".main.CameraActivity"></activity>
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".main.NewActivity"
+>>>>>>> cd25a870d4364deaf2506f30528d657746d22a50
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity
+            android:name=".HomeActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".authentication.SignUpActivity"
