@@ -70,7 +70,7 @@ class NewActivity : AppCompatActivity() {
 
         make_prediction.setOnClickListener(View.OnClickListener {
                 var resized = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-                val model = Modelfinalez.newInstance(this)
+                val model = ModelSkin.newInstance(this)
 
                 var tbuffer = TensorImage.fromBitmap(resized)
                 var byteBuffer = tbuffer.buffer

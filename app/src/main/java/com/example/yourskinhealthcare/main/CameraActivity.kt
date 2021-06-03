@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yourskinhealthcare.R
 import com.example.yourskinhealthcare.databinding.ActivityCameraBinding
 import com.example.yourskinhealthcare.databinding.ActivityHomeBinding
-import com.example.yourskinhealthcare.ml.SkinModel
+import com.example.yourskinhealthcare.ml.ModelSkin
 import com.example.yourskinhealthcare.ui.RecognitionAdapter
 import com.example.yourskinhealthcare.util.YuvToRgbConverter
 import com.example.yourskinhealthcare.viewmodel.Recognition
@@ -191,7 +191,7 @@ class CameraActivity : AppCompatActivity() {
         // TODO 1: Add class variable TensorFlow Lite Model
         // Initializing the flowerModel by lazy so that it runs in the same thread when the process
         // method is called.
-        private val skinModel = SkinModel.newInstance(ctx)
+        private val modelSkin = ModelSkin.newInstance(ctx)
 
         // TODO 6. Optional GPU acceleration
 
@@ -204,7 +204,7 @@ class CameraActivity : AppCompatActivity() {
             val tfImage = TensorImage.fromBitmap(toBitmap(imageProxy))
 
             // TODO 3: Process the image using the trained model, sort and pick out the top results
-            val outputs = skinModel.process(tfImage)
+            val outputs = modelSkin.process(tfImage)
                 .probabilityAsCategoryList.apply {
                     sortByDescending { it.score } // Sort with highest confidence first
                 }.take(MAX_RESULT_DISPLAY) // take the top results
