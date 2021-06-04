@@ -1,21 +1,15 @@
 package com.example.yourskinhealthcare.authentication
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
-import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import com.example.yourskinhealthcare.ui.home.HomeActivity
 import com.example.yourskinhealthcare.R
 import com.example.yourskinhealthcare.ui.home.MainActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -38,26 +32,28 @@ class LoginActivity : AppCompatActivity() {
         mSignUpBtn = findViewById(R.id.signUp)
         forgotTextLink = findViewById(R.id.forgotPassword)
 
-        if (fAuth!!.currentUser != null) {
+        if (fAuth.currentUser != null) {
             startActivity(Intent(applicationContext, MainActivity::class.java))
             finish()
         }
 
         mLoginBtn.setOnClickListener(View.OnClickListener {
-            val email = mEmail.getText().toString().trim { it <= ' ' }
-            val password = mPassword.getText().toString().trim { it <= ' ' }
+            val email = mEmail.text.toString().trim { it <= ' ' }
+            val password = mPassword.text.toString().trim { it <= ' ' }
             if (TextUtils.isEmpty(email)) {
-                mEmail.setError("Email is Required.")
+                mEmail.error = "Email is Required."
                 return@OnClickListener
             }
             if (TextUtils.isEmpty(password)) {
-                mPassword.setError("Password is Required.")
+                mPassword.error = "Password is Required."
                 return@OnClickListener
             }
             if (password.length < 6) {
-                mPassword.setError("Password Must be >= 6 Characters")
+                mPassword.error = "Password Must be >= 6 Characters"
                 return@OnClickListener
             }
+
+            progressBar.visibility = View.VISIBLE
 
             fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -70,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                         "Error ! " + task.exception!!.message,
                         Toast.LENGTH_SHORT
                     ).show()
+                    progressBar.visibility = View.GONE
                 }
             }
         })
@@ -87,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 "Yes"
             ) { dialog, which -> // extract the email and send reset link
                 val mail = resetMail.text.toString()
-                fAuth!!.sendPasswordResetEmail(mail).addOnSuccessListener {
+                fAuth.sendPasswordResetEmail(mail).addOnSuccessListener {
                     Toast.makeText(
                         this@LoginActivity,
                         "Reset Link Sent To Your Email.",

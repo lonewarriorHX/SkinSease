@@ -25,7 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.progressBar
 import java.util.HashMap
 
 class ProfileFragment : Fragment() {
@@ -64,8 +66,8 @@ class ProfileFragment : Fragment() {
         user = auth.currentUser!!
         storageReference = FirebaseStorage.getInstance().reference
 
-        val documentReference = fStore!!.collection("users").document(
-            userId!!
+        val documentReference = fStore.collection("users").document(
+            userId
         )
 
         documentReference.addSnapshotListener(
@@ -92,8 +94,8 @@ class ProfileFragment : Fragment() {
             startActivityForResult(openGalleryIntent, 1000)
         }
         binding.btnEditProfile.setOnClickListener(View.OnClickListener {
-            if (binding.profileFullName.getText().toString()
-                    .isEmpty() || binding.profileEmail.getText().toString()
+            if (binding.profileFullName.text.toString()
+                    .isEmpty() || binding.profileEmail.text.toString()
                     .isEmpty()
             ) {
                 Toast.makeText(
@@ -103,7 +105,7 @@ class ProfileFragment : Fragment() {
                 ).show()
                 return@OnClickListener
             }
-            val email = profileEmail.getText().toString()
+            val email = profileEmail.text.toString()
             user.updateEmail(email).addOnSuccessListener {
                 val docRef = fStore.collection("users").document(
                     user.uid
@@ -111,7 +113,7 @@ class ProfileFragment : Fragment() {
                 val edited: MutableMap<String, Any> =
                     HashMap()
                 edited["email"] = email
-                edited["fName"] = binding.profileFullName.getText().toString()
+                edited["fName"] = binding.profileFullName.text.toString()
                 docRef.update(edited).addOnSuccessListener {
                     Toast.makeText(requireActivity(), "Profile Updated", Toast.LENGTH_SHORT)
                         .show()
@@ -138,7 +140,7 @@ class ProfileFragment : Fragment() {
                 "Yes"
             ) { dialog, which -> // extract the email and send reset link
                 val mail = resetMail.text.toString()
-                auth!!.sendPasswordResetEmail(mail).addOnSuccessListener {
+                auth.sendPasswordResetEmail(mail).addOnSuccessListener {
                     Toast.makeText(
                         requireActivity(),
                         "Reset Link Sent To Your Email.",
