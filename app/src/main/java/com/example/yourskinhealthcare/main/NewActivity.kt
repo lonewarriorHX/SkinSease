@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yourskinhealthcare.R
 import com.example.yourskinhealthcare.detail.DetailActivity1
+import com.example.yourskinhealthcare.detail.DetailActivity2
 import com.example.yourskinhealthcare.ml.*
 import kotlinx.android.synthetic.main.activity_detect.*
 import org.tensorflow.lite.DataType
@@ -143,7 +144,7 @@ class NewActivity : AppCompatActivity() {
             model.close()
 
             btnmel.setOnClickListener {
-                startActivity(Intent(this,DetailActivity1::class.java))
+                startActivity(Intent(this, DetailActivity2::class.java))
                 finish()
             }
             btnder.setOnClickListener {

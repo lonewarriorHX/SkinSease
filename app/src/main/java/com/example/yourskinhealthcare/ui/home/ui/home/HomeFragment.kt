@@ -20,6 +20,7 @@ import com.example.yourskinhealthcare.authentication.LoginActivity
 import com.example.yourskinhealthcare.databinding.FragmentHomeBinding
 
 import com.example.yourskinhealthcare.detail.DetailActivity1
+import com.example.yourskinhealthcare.detail.DetailActivity2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -132,7 +133,7 @@ class HomeFragment : Fragment() {
             }
             btn5.setOnClickListener {
                 requireActivity().run {
-                    startActivity(Intent(this, DetailActivity1::class.java))
+                    startActivity(Intent(this, DetailActivity2::class.java))
                 }
             }
             btn2.setOnClickListener {

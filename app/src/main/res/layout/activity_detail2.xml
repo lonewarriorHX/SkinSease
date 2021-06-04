@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".detail.DetailActivity1">
+    tools:context=".detail.DetailActivity2">
 
     <ImageView
         android:id="@+id/img_full"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:background="@color/grey"
-        android:src="@drawable/istockphoto"
+        android:src="@drawable/melanoma"
         android:scaleType="centerCrop"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
@@ -47,10 +47,10 @@
             android:scaleType="center" />
         <ImageView
             android:id="@+id/iv_poster"
-            android:src="@drawable/dermato"
+            android:src="@drawable/fotomel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:text="Dermatofibroma Detail"/>
+            android:text="Melanoma Detail"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -106,7 +106,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brownbg"
         android:textSize="14sp"
-        android:text="Segera"
+        android:text="Sangat Segera"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         app:layout_constraintVertical_bias="0.5"
@@ -149,7 +149,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:text="Dermatofibroma merupakan sebuah pertumbuhan kulit kecil non-kanker yang dapat berkembang di bagian tubuh mana saja tetapi paling sering muncul di kaki bagian bawah, lengan atas atau punggung atas." />
+        android:text="Melanoma adalah bentuk serius dari kanker kulit yang dimulai pada sel yang dikenal sebagai melanocytes. Meskipun kurang umum daripada basal cell carcinoma (BCC) dan squamous cell carcinoma (SCC), melanoma lebih berbahaya karena kemampuannya untuk menyebar ke organ lain lebih cepat jika tidak diobati pada tahap awal." />
 
     <TextView
         android:id="@+id/textView2"
@@ -174,12 +174,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:text="Corticosteroid Injection \nCyrotherapy \nExcision Surgery \nPulse Dye Laser"
+        android:text="Mohs Surgery \nRadio Therapy \nChemoteraphy"
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp"
         android:maxLines="5"
         android:gravity="start" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
