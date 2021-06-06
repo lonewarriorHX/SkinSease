@@ -18,9 +18,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.yourskinhealthcare.authentication.LoginActivity
 import com.example.yourskinhealthcare.databinding.FragmentHomeBinding
+import com.example.yourskinhealthcare.detail.*
 
-import com.example.yourskinhealthcare.detail.DetailActivity1
-import com.example.yourskinhealthcare.detail.DetailActivity2
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -138,17 +137,17 @@ class HomeFragment : Fragment() {
             }
             btn2.setOnClickListener {
                 requireActivity().run {
-                    startActivity(Intent(this, DetailActivity1::class.java))
+                    startActivity(Intent(this, DetailActivity4::class.java))
                 }
             }
             btn3.setOnClickListener {
                 requireActivity().run {
-                    startActivity(Intent(this, DetailActivity1::class.java))
+                    startActivity(Intent(this, DetailActivity3::class.java))
                 }
             }
             btn4.setOnClickListener {
                 requireActivity().run {
-                    startActivity(Intent(this, DetailActivity1::class.java))
+                    startActivity(Intent(this, DetailActivity5::class.java))
                 }
             }
         }

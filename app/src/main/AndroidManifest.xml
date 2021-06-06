@@ -15,16 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourSkinHealthcare">
-        <activity android:name=".detail.DetailActivity2"></activity>
-        <activity android:name=".detail.DetailActivity1"></activity>
+        <activity android:name=".detail.DetailActivity5"></activity>
+        <activity android:name=".detail.DetailActivity4" />
+        <activity android:name=".detail.DetailActivity3" />
+        <activity android:name=".detail.DetailActivity2" />
+        <activity android:name=".detail.DetailActivity1" />
         <activity
             android:name=".ui.home.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".main.NewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
-        <activity android:name=".main.CameraActivity"></activity>
+        <activity android:name=".main.CameraActivity" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
@@ -44,9 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".authentication.profile"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
     </application>
 
 </manifest>

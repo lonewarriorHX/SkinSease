@@ -13,8 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yourskinhealthcare.R
-import com.example.yourskinhealthcare.detail.DetailActivity1
-import com.example.yourskinhealthcare.detail.DetailActivity2
+import com.example.yourskinhealthcare.detail.*
 import com.example.yourskinhealthcare.ml.*
 import kotlinx.android.synthetic.main.activity_detect.*
 import org.tensorflow.lite.DataType
@@ -149,6 +148,18 @@ class NewActivity : AppCompatActivity() {
             }
             btnder.setOnClickListener {
                 startActivity(Intent(this,DetailActivity1::class.java))
+                finish()
+            }
+            btnsqu.setOnClickListener {
+                startActivity(Intent(this,DetailActivity4::class.java))
+                finish()
+            }
+            btnpig.setOnClickListener {
+                startActivity(Intent(this, DetailActivity5::class.java))
+                finish()
+            }
+            btnseb.setOnClickListener {
+                startActivity(Intent(this,DetailActivity3::class.java))
                 finish()
             }
         })
