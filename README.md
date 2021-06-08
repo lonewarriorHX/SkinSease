@@ -11,7 +11,43 @@ Our app can help people to do simple diagnosis on their skin condition. The app 
 - Android: deployment of TensorFlow lite for skin diseases’ image classification and a real-time connection using Firebase (Firestore Database) for the authentication of users.
 - Cloud: Setting up and implementing firebase and its products with the billing enabled. The products that are used are Firestore Database, Realtime Database, and Storage.
 
+## Deployment
+**Machine Learning Deployment - 1 : Image Recognition using upload images.** App will need permission to access users storage. [image not being uploaded]
+
+Deployment is done by importing tflite model into the android app, and implement it with code given by the model itself
+
+![image](https://user-images.githubusercontent.com/65085841/121186567-71345400-c891-11eb-92ef-43ca8e870c02.png) ![image](https://user-images.githubusercontent.com/65085841/121186448-4f3ad180-c891-11eb-99d7-e181e545b132.png)
+
+**Deployment - 2 : Live Camera Detection**
+
+Deployment is done using tflite and official tensorflow image classification demo. 
+
+The classification is done by using camera from an android smartphone.
+
+The top 3 prediction shown in the label, and the prediction score can change continuously.
+
+![image](https://user-images.githubusercontent.com/65085841/121186863-b35d9580-c891-11eb-9e19-f9592b8b3848.png)
+
+
 ## Features
+- **Splash screen, log in and sign up activity**
+
+![image](https://user-images.githubusercontent.com/65085841/121185663-7d6be180-c890-11eb-9cce-2e068b89529f.png)
+
+- **Home, Detect, and Profile Activity**
+
+![image](https://user-images.githubusercontent.com/65085841/121186031-ddfb1e80-c890-11eb-923a-1ba95226f9f1.png)
+
+- **Detail Activity**
+
+![image](https://user-images.githubusercontent.com/65085841/121186126-f408df00-c890-11eb-8bd4-97ff895b34ed.png)
+
+- **Detection Activity**
+
+![image](https://user-images.githubusercontent.com/65085841/121186250-1864bb80-c891-11eb-827c-0f7e98e05a1d.png)
+
+
+
 
 ## Dataset Link:
 - https://www.kaggle.com/mdsafayet/multiclass-disease-classification (original)
