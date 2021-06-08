@@ -37,7 +37,7 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // permis
 // Listener for the result of the ImageAnalyzer
 typealias RecognitionListener = (recognition: List<Recognition>) -> Unit
 
-class CameraActivity: AppCompatActivity() {
+class CameraActivity : AppCompatActivity() {
 
     // CameraX variables
     private lateinit var preview: Preview // Preview use case, fast, responsive view of the camera
@@ -185,38 +185,24 @@ class CameraActivity: AppCompatActivity() {
 
     private class ImageAnalyzer(ctx: Context, private val listener: RecognitionListener) :
         ImageAnalysis.Analyzer {
-
-        // TODO 1: Add class variable TensorFlow Lite Model
         // Initializing the flowerModel by lazy so that it runs in the same thread when the process
         // method is called.
         private val modelSkin = ModelSkin.newInstance(ctx)
-
-        // TODO 6. Optional GPU acceleration
-
 
         override fun analyze(imageProxy: ImageProxy) {
 
             val items = mutableListOf<Recognition>()
 
-            // TODO 2: Convert Image to Bitmap then to TensorImage
             val tfImage = TensorImage.fromBitmap(toBitmap(imageProxy))
 
-            // TODO 3: Process the image using the trained model, sort and pick out the top results
             val outputs = modelSkin.process(tfImage)
                 .probabilityAsCategoryList.apply {
                     sortByDescending { it.score } // Sort with highest confidence first
                 }.take(MAX_RESULT_DISPLAY) // take the top results
 
-            // TODO 4: Converting the top probability items into a list of recognitions
             for (output in outputs) {
                 items.add(Recognition(output.label, output.score))
             }
-
-            // START - Placeholder code at the start of the codelab. Comment this block of code out.
-            //     for (i in 0 until MAX_RESULT_DISPLAY){
-            //         items.add(Recognition("Fake label $i", Random.nextFloat()))
-            //     }
-            // END - Placeholder code at the start of the codelab. Comment this block of code out.
 
             // Return the result
             listener(items.toList())

@@ -20,7 +20,7 @@ import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
-class NewActivity : AppCompatActivity() {
+class DetectActivity : AppCompatActivity() {
 
     lateinit var select_image_button: Button
     lateinit var make_prediction: Button
@@ -147,11 +147,11 @@ class NewActivity : AppCompatActivity() {
                 finish()
             }
             btnder.setOnClickListener {
-                startActivity(Intent(this,DetailActivity1::class.java))
+                startActivity(Intent(this, DetailActivity1::class.java))
                 finish()
             }
             btnsqu.setOnClickListener {
-                startActivity(Intent(this,DetailActivity4::class.java))
+                startActivity(Intent(this, DetailActivity4::class.java))
                 finish()
             }
             btnpig.setOnClickListener {
@@ -159,7 +159,7 @@ class NewActivity : AppCompatActivity() {
                 finish()
             }
             btnseb.setOnClickListener {
-                startActivity(Intent(this,DetailActivity3::class.java))
+                startActivity(Intent(this, DetailActivity3::class.java))
                 finish()
             }
         })

@@ -21,7 +21,6 @@ class RecognitionAdapter(private val ctx: Context) :
         return RecognitionViewHolder(binding)
     }
 
-    // Binding the data fields to the RecognitionViewHolder
     override fun onBindViewHolder(holder: RecognitionViewHolder, position: Int) {
         holder.bindTo(getItem(position))
     }

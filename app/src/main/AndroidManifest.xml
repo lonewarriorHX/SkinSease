@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YourSkinHealthcare">
-        <activity android:name=".detail.DetailActivity5"></activity>
+        <activity android:name=".detail.DetailActivity5">
+
+        </activity>
         <activity android:name=".detail.DetailActivity4" />
         <activity android:name=".detail.DetailActivity3" />
         <activity android:name=".detail.DetailActivity2" />
@@ -24,13 +26,10 @@
             android:name=".ui.home.MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".main.NewActivity"
+            android:name=".main.DetectActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity android:name=".main.CameraActivity" />
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".authentication.SignUpActivity"
             android:theme="@style/Theme.Design.Light.NoActionBar" />
